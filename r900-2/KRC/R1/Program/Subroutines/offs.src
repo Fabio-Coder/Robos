@@ -1,0 +1,28 @@
+&ACCESS RV3
+&REL 18
+&COMMENT Funcao Offset, Informar Ponto,x,y,z
+&PARAM DISKPATH = Program/SubRoutines
+&PARAM EDITMASK = *
+DEFFCT E6POS Offs (pPosicaoOffs:IN,X:IN,Y:IN,Z:IN)
+;
+;FOLD Declaração de variaveis
+  DECL REAL X,Y,Z
+  DECL E6POS pPosicaoOffs
+  ;z=1000
+;ENDFOLD
+;
+
+$BASE=BASE_DATA[numBase]
+
+;FOLD Calcula o deslocamento
+  pPosicaoOffs.X=pPosicaoOffs.X+X
+  pPosicaoOffs.Y=pPosicaoOffs.Y+Y
+  pPosicaoOffs.Z=pPosicaoOffs.Z+Z
+;ENDFOLD
+;
+
+;FOLD Retorno da variavel
+  RETURN (pPosicaoOffs)
+;ENDFOLD
+;
+ENDFCT
