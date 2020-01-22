@@ -3,8 +3,8 @@ MODULE Injetora
   !************************************************************
   !               ServNews Robotica e Automacao               *
   !															*
-  !Processo    : Manipulação de Peças de Injetora             *
-  !Cliente     : AutoCom  (Taubaté-SP)                        *
+  !Processo    : Manipulaï¿½ï¿½o de Peï¿½as de Injetora             *
+  !Cliente     : AutoCom  (Taubatï¿½-SP)                        *
   !Aplicacao   : Injetora                                     *
   !System ID   :                                              *
   !Robot Type  : IRC5  4400-45/1.96                           *
@@ -12,29 +12,33 @@ MODULE Injetora
   !Local       :                                              *
   !Criacao     : Marcelo Hasman, Paulo Vitor                  *
   !Data				 : 23/02/2012 11:02:40                  *
-  !Alteração   :                                              *
+  !Alteraï¿½ï¿½o   :                                              *
   !www.servnews.com.br                 Phone: +55 12 39034106 *                                                     
   !************************************************************
   !
-  !Rotinas presentes neste módulo:
+  !Rotinas presentes neste mï¿½dulo:
   ! - Main Module
-  ! - rMensagem
-  ! - r_Calib
-  ! - rCondInicial
-  ! - rAutoReset
-  ! - rControleGarra
-  ! - rPosManutencao
-  ! - rDescargaInjecao
-  ! - rCargaSaida
-  ! - rInspecao
-  ! - rPrensa
-  ! - rResfriamento
-  ! - rHome
-  ! - rHomeResfr
-  ! - rHomePrensa
-  ! - rHomeCargaSaida
-  ! - rHomeInspecao
-  ! - rHomeInjetora
+  ! - rMensagem*
+  ! - r_Calib*
+  ! - rCondInicial*
+  ! - rAutoReset*
+  ! - rControleGarra*
+  ! - rPosManutencao*
+  ! - rDescargaInjecao*
+  ! - rCargaSaida*
+  ! - rInspecao*
+  ! - rPrensa*
+  ! - rResfriamento*
+  ! - rHome*
+  ! - rHomeResfr*
+  ! - rHomePrensa*
+  ! - rHomeCargaSaida*
+  ! - rHomeInspecao*
+  ! - rHomeInjetora*
+  rPecaBoa
+  rPecaRuim
+  trapPecaNaoOk
+  main
   !===================================================================================================
   ! DADOS DE ROBTARGET
   !=================================================================================================== 
@@ -136,7 +140,7 @@ MODULE Injetora
   VAR intnum intPecaNaoOk:=0;
 
   !===================================================================================================
-  ! DADOS NUMÉRICOS
+  ! DADOS NUMï¿½RICOS
   !=================================================================================================== 
   PERS num nTotalPecas:=0;
   VAR num nPosicaoZ:=0;
@@ -149,7 +153,7 @@ MODULE Injetora
   PERS num nPecaBoa:=0;
   PERS num contador:=1;
   !===================================================================================================
-  ! DADOS DE INTERRUPÇÃO
+  ! DADOS DE INTERRUPï¿½ï¿½O
   !=================================================================================================== 
   VAR intnum intno2:=0;
   VAR intnum intno1:=0;
@@ -175,7 +179,7 @@ MODULE Injetora
 																		"       Executando descarga na rampa     ",
 																		"     Executando sistema de autoreset    "];
   !===================================================================================================
-  ! DADOS DE POSIÇÃO
+  ! DADOS DE POSIï¿½ï¿½O
   !=================================================================================================== 
   VAR pos posReset:=[0,0,0];
   !===================================================================================================
@@ -191,7 +195,7 @@ MODULE Injetora
   !
   ! 
   !===================================================================================================
-  ! ROTINA DE CONDIÇÕES INICIAIS
+  ! ROTINA DE CONDIï¿½ï¿½ES INICIAIS
   !=================================================================================================== 
   PROC rCondInicial()
     ! Rotina que realiza as condicoes iniciais das variaveis do programa
@@ -232,7 +236,7 @@ MODULE Injetora
     rMensagem 14;
     !
     SoftDeact; !Desabilita o Soft Servo
-    posReset:=CPos(\Tool:=toolGARRA\WObj:=wobj0); !Carrega posicao do Robô
+    posReset:=CPos(\Tool:=toolGARRA\WObj:=wobj0); !Carrega posicao do Robï¿½
     nPosicaoX:=posReset.x;
     nPosicaoY:=posReset.y;
     nPosicaoZ:=posReset.z;
@@ -299,9 +303,9 @@ MODULE Injetora
 	MoveJ pHomeInjetora,v500,fine,toolGARRA;
   ELSE
     TPErase;
-	TPWrite"Robo fora da área mapeada!!";
+	TPWrite"Robo fora da ï¿½rea mapeada!!";
 	TPWrite"O robo pode ir para Home? ";
-	TPReadFK reg1, " CUIDADO RISCO DE COLISÂO!!! ","SIM", stEmpty, stEmpty, stEmpty, "NAO";
+	TPReadFK reg1, " CUIDADO RISCO DE COLISï¿½O!!! ","SIM", stEmpty, stEmpty, stEmpty, "NAO";
    TEST reg1
 	CASE 1: 
 	MoveJ pCentro, v600, z1, toolGARRA;
@@ -337,7 +341,7 @@ MODULE Injetora
 	ENDTEST
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE DESCARGA DA INJEÇÃO
+  ! ROTINA DE DESCARGA DA INJEï¿½ï¿½O
   !=================================================================================================== 
   PROC rDescargaInjecao()
     !
@@ -384,7 +388,7 @@ MODULE Injetora
     RETURN;
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE INSPEÇÃO
+  ! ROTINA DE INSPEï¿½ï¿½O
   !=================================================================================================== 
   PROC rInspecao()
     !
@@ -445,7 +449,7 @@ MODULE Injetora
     MoveJ pHomeResfriam, v800, z20, toolGARRA\WObj:=wobj0;
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE POSICIONAMENTO DE MANUTENÇÃO
+  ! ROTINA DE POSICIONAMENTO DE MANUTENï¿½ï¿½O
   !=================================================================================================== 
   PROC rPosManutencao()
     !
@@ -458,10 +462,10 @@ MODULE Injetora
     MoveJ pHomeInjetora,v300,z1,toolGARRA;
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE CARREGAR A SAÍDA (DEPOSITO DE PEÇAS)
+  ! ROTINA DE CARREGAR A SAï¿½DA (DEPOSITO DE PEï¿½AS)
   !=================================================================================================== 
   PROC rCargaSaida()
-    ! Esta rotina não esta sendo utilizada no momento!!!
+    ! Esta rotina nï¿½o esta sendo utilizada no momento!!!
     ! Deposita pecas ruins!!
     !
     MoveJ pHomeCargaSaida, v2500, z10, toolGARRA\WObj:=wobj0;
@@ -482,20 +486,21 @@ MODULE Injetora
   !=================================================================================================== 
   PROC rPrensa()
   !
-  !Esta rotina não esta sendo utilizada no momento
+  !
+  !Esta rotina nï¿½o esta sendo utilizada no momento
   !
     TPWrite "Peca OK";
     WaitUntil di15_PrensaPronta = 1\MaxTime:=1\TimeFlag:=flag2;
   IF flag2=TRUE THEN
     TPErase;
     TPWrite " ";
-    TPWrite "Prensa não está pronta";
+    TPWrite "Prensa nao esta pronta";
     rPecaBoa;
     rHomeCargaSaida;
     RETURN;
   ENDIF
-   ! Pontos na prensa não marcados
-   ! só retirar comentario quando colocar a prensa
+   ! Pontos na prensa nao marcados
+   ! so retirar comentario quando colocar a prensa
    ! em funcionamento com o robo e marcar os pontos
     !MoveJ pApxPRENSA_01, v200, z50, toolGARRA;
     !MoveL pPRENSA, v600, fine, toolGARRA;
@@ -506,7 +511,7 @@ MODULE Injetora
     RETURN;
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE CALIBRAÇÃO 
+  ! ROTINA DE CALIBRACAO 
   !=================================================================================================== 
   PROC r_Calib()
     MoveAbsJ jCalib,v400,fine,toolGARRA;
@@ -559,7 +564,7 @@ MODULE Injetora
     RETURN;
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE HOME INSPEÇÃO
+  ! ROTINA DE HOME INSPEï¿½ï¿½O
   !=================================================================================================== 
   PROC rHomeInspecao()
     !
@@ -589,17 +594,17 @@ MODULE Injetora
     RETURN;
   ENDPROC
   !===================================================================================================
-  ! ROTINA DE HOME DA CARGA SAÍDA
+  ! ROTINA DE HOME DA CARGA SAï¿½DA
   !=================================================================================================== 
   PROC rHomeCargaSaida()
     !
-    ! Rotina de home da Carga saída
+    ! Rotina de home da Carga saï¿½da
     !
     MoveJ pHomeCargaSaida, v2500, z10, toolGARRA\WObj:=wobj0;
     RETURN;
   ENDPROC
   !===================================================================================================
-  ! ROTINA ROTINA DE PEÇA BOA (rotina temporária)
+  ! ROTINA ROTINA DE PEï¿½A BOA (rotina temporï¿½ria)
   !=================================================================================================== 
 	PROC rPecaBoa()
     !
@@ -623,7 +628,7 @@ MODULE Injetora
 	ENDPROC
   
   !===================================================================================================
-  ! ROTINA DE PECA RUIM (rotina temporária)
+  ! ROTINA DE PECA RUIM (rotina temporï¿½ria)
   !=================================================================================================== 
 	PROC rPecaRuim()
     !
